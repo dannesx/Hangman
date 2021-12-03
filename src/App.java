@@ -10,66 +10,84 @@ public class App {
         Words words = new Words();
         ArrayList<Character> usedLetters = new ArrayList<>();
 
-        int chances = 5;
+        boolean wannaContinue = true;
+        int score = 0;
 
-        String[] round = words.getWord();
-        String theme = round[0];
-        char[] answer = round[1].toUpperCase().toCharArray();
-        char[] word = blankWord(answer);
+        do {
+            int chances = 5;
 
-        clearScreen();
-        cyan("Welcome to the Hangman Game! Hope you have fun! :D\n");
+            String[] round = words.getWord();
+            String theme = round[0];
+            char[] answer = round[1].toUpperCase().toCharArray();
+            char[] word = blankWord(answer);
 
-        while (chances > 0) {
-            String consoleData;
-            char letter = ' ';
+            clearScreen();
+            cyan("Welcome to the Hangman Game! Hope you have fun! :D\n");
 
-            do {
-                System.out.println("Theme: " + theme + "\n");
-                System.out.println(wordToString(word) + "\n");
-                cyan("Chances: " + chances);
-                cyan("Used Letters: " + usedLetters.toString() + "\n");
-                System.out.print("Please enter a letter: ");
-                consoleData = sc.next();
+            while (chances > 0) {
+                String consoleData;
+                char letter = ' ';
 
-                if (consoleData.length() > 1) {
-                    clearScreen();
-                    red("Please, enter only ONE letter at time! >:(\n");
-                } else {
-                    letter = Character.toUpperCase(consoleData.charAt(0));
+                do {
+                    System.out.println("Theme: " + theme + "\n");
+                    System.out.println(wordToString(word) + "\n");
+                    yellow("Score: " + score);
+                    cyan("Chances: " + chances);
+                    cyan("Used Letters: " + usedLetters.toString() + "\n");
+                    System.out.print("Please enter a letter: ");
+                    consoleData = sc.next();
 
-                    if (usedLetters.contains(letter)) {
+                    if (consoleData.length() > 1) {
                         clearScreen();
-                        yellow("You already used this letter! Try another one...\n");
+                        red("Please, enter only ONE letter at time! >:(\n");
+                    } else {
+                        letter = Character.toUpperCase(consoleData.charAt(0));
+
+                        if (usedLetters.contains(letter)) {
+                            clearScreen();
+                            yellow("You already used this letter! Try another one...\n");
+                        }
                     }
+                } while (consoleData.length() > 1 || usedLetters.contains(letter));
+
+                usedLetters.add(letter);
+
+                if (contains(letter, answer)) {
+                    clearScreen();
+                    green("Nice! You got this!\n");
+                    updateWord(answer, word, letter);
+                } else {
+                    clearScreen();
+                    red("Oh no! You missed :(\n");
+                    chances--;
                 }
-            } while (consoleData.length() > 1 || usedLetters.contains(letter));
 
-            usedLetters.add(letter);
-
-            if (contains(letter, answer)) {
-                clearScreen();
-                green("Nice! You got this!\n");
-                updateWord(answer, word, letter);
                 if (wordIsComplete(word)) {
+                    score++;
                     green("YOU WON! :D\n");
                     System.out.println(wordToString(word) + "\n");
+                    yellow("Score: " + score);
                     cyan("Chances: " + chances);
-                    cyan("Used Letters: " + usedLetters.toString());
-                    credits();
-                    return;
+                    cyan("Used Letters: " + usedLetters.toString() + "\n");
+                    chances = 0;
+                    yellow("Do you want to continue? [y/n]");
+                    wannaContinue = Character.toUpperCase(sc.next().charAt(0)) == 'Y';
+                    if (wannaContinue)
+                        resetGame(usedLetters);
+                } else if (chances == 0) {
+                    red("GAME OVER!\n");
+                    System.out.println("The answer was: " + wordToString(answer) + "\n");
+                    yellow("Score: " + score);
+                    cyan("Chances: " + chances);
+                    cyan("Used Letters: " + usedLetters.toString() + "\n");
+                    yellow("Do you want to continue? [y/n]");
+                    wannaContinue = Character.toUpperCase(sc.next().charAt(0)) == 'Y';
+                    if (wannaContinue)
+                        resetGame(usedLetters);
                 }
-            } else {
-                clearScreen();
-                red("Oh no! You missed :(\n");
-                chances--;
             }
-        }
+        } while (wannaContinue);
 
-        red("GAME OVER!\n");
-        System.out.println("The answer was: " + wordToString(answer) + "\n");
-        cyan("Chances: " + chances);
-        cyan("Used Letters: " + usedLetters.toString());
         credits();
 
         sc.close();
@@ -127,6 +145,10 @@ public class App {
         return false;
     }
 
+    public static void resetGame(ArrayList<Character> usedLetters) {
+        usedLetters.clear();
+    }
+
     // Screens
 
     public static void menu() {
@@ -138,7 +160,7 @@ public class App {
     }
 
     public static void credits() {
-        yellow("\nA game developed by @dannesx 🚀");
+        yellow("\nThanks for playing! Developed by Daniel Antunes | @dannesx 🚀");
     }
 
     public static void red(String s) {
