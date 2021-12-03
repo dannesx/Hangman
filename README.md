@@ -1,18 +1,63 @@
-## Getting Started
+<center>
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+![Hangman](./images/hangman.png)
 
-## Folder Structure
+# Hangman - Java Console Game
 
-The workspace contains two folders by default, where:
+![License](https://img.shields.io/badge/License-MIT-brightgreen)
+![Status](https://img.shields.io/badge/Status-Finalizado-brightgreen)
+![Version](https://img.shields.io/badge/Vers%C3%A3o-1.0.0-blue)
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+</center>
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+> Jogo da Forca (Hangman) desenvolvido em Java para atender os requisitos da disciplina de Estrutura de Dados, lecionada pelo profº Peter Jandl - FATEC Jundiaí 🚀
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## 💻 Sobre o Projeto
 
-## Dependency Management
+Este é um simples Jogo da Forca. O jogo buscará uma palavra e seu tema para que você possa acertá-la, dando palpites de letras.
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+O jogador possui 5 tentativas. Se conseguir acertar a palavra, faz 1 ponto.
+
+## 🕹️ Como Rodar
+
+Assumindo que você tenha instalado Git e JDK11 ou superior, clone este repositório para sua máquina local através do seguinte comando:
+
+```git
+git clone https://github.com/dannesx/Hangman.git
+```
+
+Para executar o projeto no seu terminal, execute o comando:
+
+```git
+java -jar Hangman.jar
+```
+
+Divirta-se! 😀
+
+## 📑 Requisitos do Projeto
+
+Os requisitos da atividade era desenvolver um jogo em Java para console, sem interface gráfica, com a implementação de pelo menos duas Estruturas de Dados mencionadas durante o semestre.
+
+Para este jogo, utilizei as estruturas Tabela de Espalhamento _(HashMap)_ e Listas _(ArrayList)_
+
+São utilizadas na classe `Words.java` para adicionar uma lista de palavras relacionadas à certo tema.
+
+## 🖼️ Telas
+
+<center>
+
+![Screen](./images/Screen.png)
+
+![Win](./images/win.png)
+
+![Lose](./images/lose.png)
+
+</center>
+
+## 📚 Licença
+
+Este projeto possui licença MIT. Você está livre para utilizá-lo a fins de estudo e projetos pessoais!
+
+## 😀 Agradecimentos
+
+Gostaria de agradecer ao excelentíssimo professor Peter Jandl, que me inspira a extrair o melhor de minhas habilidades, e que fez uma grande diferença na minha vida acadêmica/profissional!
