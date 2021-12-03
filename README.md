@@ -1,4 +1,4 @@
-<center>
+<div align="center>
 
 ![Hangman](./images/hangman.png)
 
@@ -8,7 +8,7 @@
 ![Status](https://img.shields.io/badge/Status-Finalizado-brightgreen)
 ![Version](https://img.shields.io/badge/Vers%C3%A3o-1.0.0-blue)
 
-</center>
+</div>
 
 > Jogo da Forca (Hangman) desenvolvido em Java para atender os requisitos da disciplina de Estrutura de Dados, lecionada pelo profº Peter Jandl - FATEC Jundiaí 🚀
 
@@ -44,7 +44,7 @@ São utilizadas na classe `Words.java` para adicionar uma lista de palavras rela
 
 ## 🖼️ Telas
 
-<center>
+<div align="center">
 
 ![Screen](./images/Screen.png)
 
@@ -52,7 +52,7 @@ São utilizadas na classe `Words.java` para adicionar uma lista de palavras rela
 
 ![Lose](./images/lose.png)
 
-</center>
+</div>
 
 ## 📚 Licença
 
